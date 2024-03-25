@@ -33,7 +33,8 @@ public class LightListenerImpl implements DeviceListener<GenericDevice>, OnOffCo
 	private PresenceSensor[] presenceSensors;
 	/** Field for binaryLights dependency */
 	private BinaryLight[] binaryLights;
-
+	
+	private boolean isAutoMode = false;
 	/** Bind Method for presenceSensors dependency */
 	public synchronized void bindPresenceSensor(PresenceSensor presenceSensor, Map<?, ?> properties) {
 		System.out.println("[DAY] - bind presence sensor.");
@@ -100,7 +101,7 @@ public class LightListenerImpl implements DeviceListener<GenericDevice>, OnOffCo
 		switch (propertyName) {
 		// The sensor detects a new presence or no longer detects a presence
 		case PresenceSensor.PRESENCE_SENSOR_SENSED_PRESENCE:
-			if (PresenceSensor.class.getName().equals(objectType)) {
+			if (PresenceSensor.class.getName().equals(objectType) & !this.isAutoMode) {
 				PresenceSensor sensor = (PresenceSensor) device;
 
 				if (!location.equals(PROPERTY_LOCATION_UNKNOWN_VALUE)) {
@@ -114,7 +115,7 @@ public class LightListenerImpl implements DeviceListener<GenericDevice>, OnOffCo
 		// We are moving a device
 		case LightListenerImpl.PROPERTY_LOCATION_NAME:
 			// We are moving a Binary Light
-			if (BinaryLight.class.getName().equals(objectType)) {
+			if (BinaryLight.class.getName().equals(objectType) & !this.isAutoMode) {
 				BinaryLight light = (BinaryLight) device;
 
 				// If a sensor is in the location, change the powerstatus according to the
@@ -130,7 +131,7 @@ public class LightListenerImpl implements DeviceListener<GenericDevice>, OnOffCo
 					light.turnOff();
 				}
 				// We are moving a PresenceSensor
-			} else if (PresenceSensor.class.getName().equals(objectType)) {
+			} else if (PresenceSensor.class.getName().equals(objectType) & !this.isAutoMode) {
 				// Get the devices of the previous location
 				List<PresenceSensor> sensors = this.getPresenceSensorFromLocation((String) oldValue);
 				List<BinaryLight> lights = this.getBinaryLightFromLocation((String) oldValue);
@@ -196,7 +197,7 @@ public class LightListenerImpl implements DeviceListener<GenericDevice>, OnOffCo
 		for (BinaryLight light : this.binaryLights) {
 			light.turnOff();
 		}
-
+		this.isAutoMode = false;
 	}
 
 	@Override
@@ -204,6 +205,6 @@ public class LightListenerImpl implements DeviceListener<GenericDevice>, OnOffCo
 		for (BinaryLight light : this.binaryLights) {
 			light.turnOn();
 		}
-
+		this.isAutoMode = true;
 	}
 }

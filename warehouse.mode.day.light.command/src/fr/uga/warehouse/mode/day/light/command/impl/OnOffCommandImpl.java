@@ -2,7 +2,9 @@ package fr.uga.warehouse.mode.day.light.command.impl;
 
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
+import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Requires;
+import org.apache.felix.ipojo.annotations.Validate;
 
 import fr.liglab.adele.icasa.command.handler.Command;
 import fr.liglab.adele.icasa.command.handler.CommandProvider;
@@ -37,5 +39,17 @@ public class OnOffCommandImpl {
 	@Command
 	public void turnLightsOn() {
 		this.lightAdministrationService.turnOnAllTheLights();
+	}
+	
+	/** Component Lifecycle Method */
+	@Invalidate
+	public void stop() {
+		System.out.println("[CMD] - OnOff commands are now unusable.");
+	}
+
+	/** Component Lifecycle Method */
+	@Validate
+	public void start() {
+		System.out.println("[CMD] - OnOff commands are now usable.");
 	}
 }

@@ -49,8 +49,11 @@ iPOJO-Components: instance { $name="fr.uga.warehouse.mode.day.light.comm
  rovider { $namespace="onofflight" fr.liglab.adele.icasa.command.handler
  :command { $method="turnLightsOff" }fr.liglab.adele.icasa.command.handl
  er:command { $method="turnLightsOn" }}requires { $field="lightAdministr
- ationService" }manipulation { $classname="fr.uga.warehouse.mode.day.lig
- ht.command.impl.OnOffCommandImpl" field { $name="lightAdministrationSer
- vice" $type="fr.uga.warehouse.mode.day.light.manager.LightAdministratio
- n" }method { $name="turnLightsOff" }method { $name="turnLightsOn" }}}
+ ationService" }callback { $transition="invalidate" $method="stop" }call
+ back { $transition="validate" $method="start" }manipulation { $classnam
+ e="fr.uga.warehouse.mode.day.light.command.impl.OnOffCommandImpl" field
+  { $name="lightAdministrationService" $type="fr.uga.warehouse.mode.day.
+ light.manager.LightAdministration" }method { $name="turnLightsOff" }met
+ hod { $name="turnLightsOn" }method { $name="stop" }method { $name="star
+ t" }}}
 

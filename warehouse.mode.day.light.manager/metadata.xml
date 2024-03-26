@@ -8,6 +8,8 @@
     </requires>
     <callback method="start" transition="validate"/>
     <callback method="stop" transition="invalidate"/>
+    <provides specifications="fr.uga.warehouse.client.time.MomentOfTheDayListener"/>
+    <requires specification="fr.uga.warehouse.client.time.TimeService" field="timeService"/>
   </component>
   <instance component="LightManager" name="LightManager-1"/>
 </ipojo>

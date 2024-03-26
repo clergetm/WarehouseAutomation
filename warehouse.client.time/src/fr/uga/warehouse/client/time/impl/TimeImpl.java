@@ -19,6 +19,7 @@ public class TimeImpl implements TimeService, PeriodicRunnable {
 
 	private List<MomentOfTheDayListener> listeners = new ArrayList<MomentOfTheDayListener>();
 
+	/** Field for clock dependency */
 	private Clock clock;
 
 	@Override
@@ -30,10 +31,11 @@ public class TimeImpl implements TimeService, PeriodicRunnable {
 	public void run() {
 		System.out.println("[TIME] Runtime");
 
-		// Get the current time from currentTimeMillis and convert it in GetCorrespondingMoment
+		// Get the current time from currentTimeMillis and convert it in
+		// getCorrespondingMoment method.
 		int currentHour = (new DateTime(clock.currentTimeMillis())).getHourOfDay();
 		MomentOfTheDay currentMoment = this.moment.getCorrespondingMoment(currentHour);
-		
+
 		// If the moment changed, transfer the information.
 		if (currentMoment != this.moment) {
 			for (MomentOfTheDayListener listener : listeners) {

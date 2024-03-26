@@ -9,9 +9,9 @@ import fr.uga.warehouse.client.time.MomentOfTheDayListener;
 import fr.uga.warehouse.client.time.TimeService;
 
 /**
- * <u>LightManagerImpl</u> implements the <u>LightAdministration</u> and 
- * bind to <u>OnOffConfiguration</u>. In order to manipulate
- * the lights of the whole map.
+ * <u>LightManagerImpl</u> implements the <u>LightAdministration</u> and bind to
+ * <u>OnOffConfiguration</u>. In order to manipulate the lights of the whole
+ * map.
  * 
  * @author mathys
  */
@@ -40,14 +40,14 @@ public class LightManagerImpl implements LightAdministration, MomentOfTheDayList
 
 	/** Bind Method for OnOffConfigurations dependency */
 	public void bindOnOffConfiguration(OnOffConfiguration onOffConfiguration, Map<?, ?> properties) {
-		System.out.println("[DAY][MANAGER] - bind new OnOffConfiguration : " 
+		System.out.println("[DAY][MANAGER] - bind new OnOffConfiguration : "
 				+ properties.get(OnOffConfiguration.PROP_ON_OFF_NAME));
 	}
 
 	/** Unbind Method for OnOffConfigurations dependency */
 	public void unbindOnOffConfiguration(OnOffConfiguration onOffConfiguration, Map<?, ?> properties) {
-		System.out.println("[DAY][MANAGER] - unbind OnOffConfiguration : "
-				+ properties.get(OnOffConfiguration.PROP_ON_OFF_NAME));
+		System.out.println(
+				"[DAY][MANAGER] - unbind OnOffConfiguration : " + properties.get(OnOffConfiguration.PROP_ON_OFF_NAME));
 	}
 
 	/** Component Lifecycle Method */
@@ -77,8 +77,7 @@ public class LightManagerImpl implements LightAdministration, MomentOfTheDayList
 		default:
 			break;
 		}
-		
-		
+
 	}
 
 }

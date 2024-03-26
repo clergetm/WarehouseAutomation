@@ -1,5 +1,11 @@
 package fr.uga.warehouse.client.time;
 
+/**
+ * <u>MomentOfTheDay</u> enum to differentiate different times of the day
+ * 
+ * @author icasa
+ * @implNote https://self-star.imag.fr/?post_type=exercise&p=116
+ */
 public enum MomentOfTheDay {
 	MORNING(6), AFTERNOON(12), EVENING(18), NIGHT(24);
 

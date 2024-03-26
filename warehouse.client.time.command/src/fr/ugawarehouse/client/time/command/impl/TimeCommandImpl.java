@@ -11,8 +11,7 @@ import fr.liglab.adele.icasa.command.handler.CommandProvider;
 import fr.uga.warehouse.client.time.TimeService;
 
 /**
- * <u>TimeCommandImpl</u> allows you to turn get informations
- * about time.
+ * <u>TimeCommandImpl</u> allows you to turn get informations about time.
  * 
  * @author mathys
  */
@@ -21,15 +20,15 @@ import fr.uga.warehouse.client.time.TimeService;
 @CommandProvider(namespace = "timecmd")
 public class TimeCommandImpl {
 
+	/** Field for timeService dependency */
 	@Requires
 	private TimeService timeService;
-	
+
 	@Command
 	public void getTime() {
 		System.out.println("[TIME]: current time is : " + this.timeService.getMomentOfTheDay());
 	}
-	
-	
+
 	/** Component Lifecycle Method */
 	@Invalidate
 	public void stop() {
